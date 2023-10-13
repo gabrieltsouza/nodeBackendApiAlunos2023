@@ -17,12 +17,12 @@ import fotosRoutes from './routes/fotoRoutes';
 
 const whitelist = [
   'https://react2.gabrielsouza.com.br',
-  'http://localhost:3000',
+
 ];
 
 const corsOptions = {
   origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (whitelist.indexOf(origin) !== -1 || (!origin && process.env.SECURITY === 'OFF')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
